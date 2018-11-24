@@ -247,11 +247,11 @@ void validate_classifier_10(char *datacfg, char *filename, char *weightfile)
     int *indexes = calloc(topk, sizeof(int));
 
     for(i = 0; i < m; ++i){
-        int class = -1;
+        int classVal = -1;
         char *path = paths[i];
         for(j = 0; j < classes; ++j){
             if(strstr(path, labels[j])){
-                class = j;
+                classVal = j;
                 break;
             }
         }
@@ -281,9 +281,9 @@ void validate_classifier_10(char *datacfg, char *filename, char *weightfile)
         free_image(im);
         top_k(pred, classes, topk, indexes);
         free(pred);
-        if(indexes[0] == class) avg_acc += 1;
+        if(indexes[0] == classVal) avg_acc += 1;
         for(j = 0; j < topk; ++j){
-            if(indexes[j] == class) avg_topk += 1;
+            if(indexes[j] == classVal) avg_topk += 1;
         }
 
         printf("%d: top 1: %f, top %d: %f\n", i, avg_acc/(i+1), topk, avg_topk/(i+1));
@@ -317,11 +317,11 @@ void validate_classifier_full(char *datacfg, char *filename, char *weightfile)
 
     int size = net->w;
     for(i = 0; i < m; ++i){
-        int class = -1;
+        int classVal = -1;
         char *path = paths[i];
         for(j = 0; j < classes; ++j){
             if(strstr(path, labels[j])){
-                class = j;
+                classVal = j;
                 break;
             }
         }
@@ -338,9 +338,9 @@ void validate_classifier_full(char *datacfg, char *filename, char *weightfile)
         free_image(resized);
         top_k(pred, classes, topk, indexes);
 
-        if(indexes[0] == class) avg_acc += 1;
+        if(indexes[0] == classVal) avg_acc += 1;
         for(j = 0; j < topk; ++j){
-            if(indexes[j] == class) avg_topk += 1;
+            if(indexes[j] == classVal) avg_topk += 1;
         }
 
         printf("%d: top 1: %f, top %d: %f\n", i, avg_acc/(i+1), topk, avg_topk/(i+1));
@@ -376,11 +376,11 @@ void validate_classifier_single(char *datacfg, char *filename, char *weightfile)
     int *indexes = calloc(topk, sizeof(int));
 
     for(i = 0; i < m; ++i){
-        int class = -1;
+        int classVal = -1;
         char *path = paths[i];
         for(j = 0; j < classes; ++j){
             if(strstr(path, labels[j])){
-                class = j;
+                classVal = j;
                 break;
             }
         }
@@ -398,9 +398,9 @@ void validate_classifier_single(char *datacfg, char *filename, char *weightfile)
         free_image(crop);
         top_k(pred, classes, topk, indexes);
 
-        if(indexes[0] == class) avg_acc += 1;
+        if(indexes[0] == classVal) avg_acc += 1;
         for(j = 0; j < topk; ++j){
-            if(indexes[j] == class) avg_topk += 1;
+            if(indexes[j] == classVal) avg_topk += 1;
         }
 
         printf("%d: top 1: %f, top %d: %f\n", i, avg_acc/(i+1), topk, avg_topk/(i+1));
@@ -436,11 +436,11 @@ void validate_classifier_multi(char *datacfg, char *cfg, char *weights)
     int *indexes = calloc(topk, sizeof(int));
 
     for(i = 0; i < m; ++i){
-        int class = -1;
+        int classVal = -1;
         char *path = paths[i];
         for(j = 0; j < classes; ++j){
             if(strstr(path, labels[j])){
-                class = j;
+                classVal = j;
                 break;
             }
         }
@@ -460,9 +460,9 @@ void validate_classifier_multi(char *datacfg, char *cfg, char *weights)
         free_image(im);
         top_k(pred, classes, topk, indexes);
         free(pred);
-        if(indexes[0] == class) avg_acc += 1;
+        if(indexes[0] == classVal) avg_acc += 1;
         for(j = 0; j < topk; ++j){
-            if(indexes[j] == class) avg_topk += 1;
+            if(indexes[j] == classVal) avg_topk += 1;
         }
 
         printf("%d: top 1: %f, top %d: %f\n", i, avg_acc/(i+1), topk, avg_topk/(i+1));

@@ -39,18 +39,18 @@ void *list_pop(list *l){
 
 void list_insert(list *l, void *val)
 {
-	node *new = malloc(sizeof(node));
-	new->val = val;
-	new->next = 0;
+	node *newVal = malloc(sizeof(node));
+	newVal->val = val;
+	newVal->next = 0;
 
 	if(!l->back){
-		l->front = new;
-		new->prev = 0;
+		l->front = newVal;
+		newVal->prev = 0;
 	}else{
-		l->back->next = new;
-		new->prev = l->back;
+		l->back->next = newVal;
+		newVal->prev = l->back;
 	}
-	l->back = new;
+	l->back = newVal;
 	++l->size;
 }
 
